@@ -1,0 +1,89 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="text-center">
+    <h4 class="display-4" style="color:cadetblue;">Search Donor</h4>
+</div>
+<div class="row" style="margin-left:5px;margin-right:5px;">
+    <div class="input-group">
+        <div class="input-group-append">
+            <select id="ddlDonorType" class="form-control">
+                <option class="dropdown-item" href="#">Plasma</option>
+                <option class="dropdown-item" href="#">Blood</option>
+            </select>
+        </div>
+        <input type="text" id="txtLocation" placeholder="Search Location" class="form-control" aria-label="Text input with dropdown button">
+        <div class="input-group-append">
+            <select id="ddlBlood" class="form-control">
+                <option class="dropdown-item" href="#">A+</option>
+                <option class="dropdown-item" href="#">A-</option>
+                <option class="dropdown-item" href="#">B+</option>
+                <option class="dropdown-item" href="#">B-</option>
+                <option class="dropdown-item" href="#">O+</option>
+                <option class="dropdown-item" href="#">O-</option>
+                <option class="dropdown-item" href="#">AB+</option>
+                <option class="dropdown-item" href="#">AB-</option>
+            </select>
+        </div>
+        <input type="button" value="Search" onclick="GetAll();" class="input-group-append">
+    </div>
+</div>
+<div class="row" style="margin-left:5px;margin-right:5px;">
+    <div id="msg" style="font-size:larger;display:none;color:cadetblue;">
+        <!-- you can set whatever style you want on this -->
+        Searching, please wait...
+    </div>
+</div>
+<div class="row" style="margin-left:5px;margin-right:5px;">
+    <br />
+    <br />
+    <div id="searchHeader" style="display:none;text-align:center;font-size:large;color:cadetblue;"> </div>
+    <div id="searchRes" class="searchResultDiv"></div>
+    <div>
+        <article>
+            <br/>
+            <br/>
+            Note: If any irrelivent data found please request us to remove by email  or by filling the form below.
+            <a class="btn btn-danger" asp-area="" asp-controller="IamDonor" asp-action="Remove">Remove me</a>
+        </article>
+    </div>
+</div>
+<script>
+    function GetAll() {
+        $("#msg").show();
+         var url = '/IamDonor/Search';
+        var location = $("#txtLocation").val();
+        var bloodGroup = $("#ddlBlood option:selected").text();
+        var ddlDonorType = $("#ddlDonorType option:selected").text();
+            $.ajax({
+                url: url,
+                data: { location: location, bloodGroup: bloodGroup,type:ddlDonorType},
+                method: 'GET',
+                success: function (res) {
+                    $("#searchHeader").show();
+                    var div = "";
+                    if (res.length == 0) {
+                        var divHead = '<p>No Donor Found!! We are sorry please make a request, whenever found any donor we will notify you.</p>';
+                        $("#searchHeader").empty().html(divHead);
+                    }
+                    else {
+                        var divHead = '<p>Following the result. please contact with them. Total' + res.length+" donor found!</p>";
+                        $("#searchHeader").empty().html(divHead);
+                    }
+                    $.each(res, function (index, value) {
+                        div += '<div><h3>Name:' + value.name +' ('+ value.boodGroup + ')</h3>'
+                            + '<p>Address: ' + value.district + ' ,' + value.thana + '</p>'
+                            + '<p> Phone:' + value.phone + '</p>'
+                            + 'Availale for<b>' + value.donateType+'</b>'
+                            +'</div > ';
+                    });
+                    $("#searchRes").show();
+                    $("#searchRes").empty().html(div);
+                    $("#msg").hide();
+                },
+                error: function () {
+                    $("#msg").hide();
+                }
+            });
+    }
+</script>

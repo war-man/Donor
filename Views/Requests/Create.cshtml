@@ -1,0 +1,76 @@
+﻿@model Donor.Entity.Request
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h4>Request Help</h4>
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <h3 style="color:cadetblue;" id="msg">@ViewBag.Msg</h3>
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="District" class="control-label"></label>
+                <select asp-for="District" class="form-control">
+                </select>
+                <span asp-validation-for="District" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Thana" class="control-label"></label>
+                <select asp-for="Thana" class="form-control">
+                </select>
+                <span asp-validation-for="Thana" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RecipientType" class="control-label"></label>
+                <select asp-for="RecipientType" class="form-control">
+                    <option value="Blood">Blood</option>
+                    <option value="Plasma">Plasma</option>
+                </select>
+                <span asp-validation-for="RecipientType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BoodGroup" class="control-label"></label>
+                <select asp-for="BoodGroup" class="form-control">
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                </select>               
+                <span asp-validation-for="BoodGroup" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Submit Request" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Request List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

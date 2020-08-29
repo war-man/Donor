@@ -1,0 +1,39 @@
+﻿@model Donor.Entity.DonorModel
+@{
+    ViewData["Title"] = "Remove Request";
+}
+<h1>Donate</h1>
+<hr />
+<div class="row">
+    <div class="col-md-6" style="align-items:center;">
+        <h3 style="color:cadetblue;" id="msg">@ViewBag.Msg</h3>
+        <form asp-action="RemoveByPhone">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HidePhone" class="control-label"></label>
+                <input asp-for="HidePhone"/>
+                <span asp-validation-for="HidePhone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

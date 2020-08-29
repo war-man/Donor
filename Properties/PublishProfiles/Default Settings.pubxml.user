@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAtDlaA87mzkCR5p8mTmOTGAAAAAACAAAAAAAQZgAAAAEAACAAAABIBj0Wp5BOZjJH1dTjY3guAoU0tadqGnE7FII5pb0Z6wAAAAAOgAAAAAIAACAAAAASypDRwtGjxltbVJWhVpTEzvzJyE0JjgBirfB1+PW0sSAAAACBi23g2cPCfed2ni0OhnN59/nzqdR37H+Oo7xY3OxBxEAAAAAQUGUYQVXPC4my3Ptb9Tl5yJhScezIbyt45SLgmof7Dgl1In3PovS+C1eYH/tQyUCJPrJlv+4FIHbpZXx70MFb</EncryptedPassword>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DonorDB">
+      <Value>server=sql5041.site4now.net%3bdatabase=DB_9B34E1_donorbank%3buser=DB_9B34E1_donorbank_admin%3bpassword=Root%40pass1</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>
